@@ -37,7 +37,7 @@ jobs:
     - name: Build Docker Image
       env:
         NEW_VERSION: ${{ steps.version.outputs.version }}
-        DOCKER_REPOSITORY: yan640/nk-httpd
+        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
       run: |
         docker build -t $DOCKER_REPOSITORY:$NEW_VERSION .
         docker build -t $DOCKER_REPOSITORY:latest .
@@ -45,7 +45,7 @@ jobs:
     - name: Push Docker Image
       env:
         NEW_VERSION: ${{ steps.version.outputs.version }}
-        DOCKER_REPOSITORY: yan640/nk-httpd
+        DOCKER_REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
       run: |
         docker push $DOCKER_REPOSITORY:$NEW_VERSION
         docker push $DOCKER_REPOSITORY:latest
