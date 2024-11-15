@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  apache:
+    # image: httpd:latest
+    # image: nk-httpd:latest
+    image: yan640/nk-httpd:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    container_name: apache-container
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public-html:/usr/local/apache2/htdocs
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    restart: always
